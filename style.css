@@ -21,6 +21,10 @@
   --color-rag-bg: #eceff1;
   --color-european: #01579b;
   --color-european-bg: #e1f5fe;
+  --color-usfinance: #4e342e;
+  --color-usfinance-bg: #efebe9;
+  --color-intl: #00695c;
+  --color-intl-bg: #e0f2f1;
 
   --bg: #fafaf7;
   --bg-card: #ffffff;
@@ -194,6 +198,8 @@ body {
 .legend-btn[data-entity="lobby"] .dot { background: var(--color-lobby); }
 .legend-btn[data-entity="rag"] .dot { background: var(--color-rag); }
 .legend-btn[data-entity="european"] .dot { background: var(--color-european); }
+.legend-btn[data-entity="usfinance"] .dot { background: var(--color-usfinance); }
+.legend-btn[data-entity="intl"] .dot { background: var(--color-intl); }
 
 /* Timeline */
 .timeline-section {
@@ -367,6 +373,14 @@ body {
   color: var(--color-european);
   background: var(--color-european-bg);
 }
+.entity[data-group="usfinance"] {
+  color: var(--color-usfinance);
+  background: var(--color-usfinance-bg);
+}
+.entity[data-group="intl"] {
+  color: var(--color-intl);
+  background: var(--color-intl-bg);
+}
 
 .entity.highlight {
   outline: 2px solid currentColor;
@@ -453,6 +467,8 @@ body {
 .entry-tag[data-entity="lobby"] { color: var(--color-lobby); background: var(--color-lobby-bg); }
 .entry-tag[data-entity="rag"] { color: var(--color-rag); background: var(--color-rag-bg); }
 .entry-tag[data-entity="european"] { color: var(--color-european); background: var(--color-european-bg); }
+.entry-tag[data-entity="usfinance"] { color: var(--color-usfinance); background: var(--color-usfinance-bg); }
+.entry-tag[data-entity="intl"] { color: var(--color-intl); background: var(--color-intl-bg); }
 
 /* Glossary Section */
 .glossary-section {
