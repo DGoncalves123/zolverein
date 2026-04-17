@@ -25,6 +25,10 @@
   --color-usfinance-bg: #efebe9;
   --color-intl: #00695c;
   --color-intl-bg: #e0f2f1;
+  --color-nazi: #d84315;
+  --color-nazi-bg: #fbe9e7;
+  --color-intel: #0097a7;
+  --color-intel-bg: #e0f7fa;
 
   --bg: #fafaf7;
   --bg-card: #ffffff;
@@ -200,6 +204,8 @@ body {
 .legend-btn[data-entity="european"] .dot { background: var(--color-european); }
 .legend-btn[data-entity="usfinance"] .dot { background: var(--color-usfinance); }
 .legend-btn[data-entity="intl"] .dot { background: var(--color-intl); }
+.legend-btn[data-entity="nazi"] .dot { background: var(--color-nazi); }
+.legend-btn[data-entity="intel"] .dot { background: var(--color-intel); }
 
 /* Timeline */
 .timeline-section {
@@ -225,12 +231,34 @@ body {
   display: flex;
   align-items: flex-start;
   margin-bottom: 3rem;
-  opacity: 1;
-  transition: opacity 0.3s;
+  transition: margin-bottom 0.35s ease;
 }
 
+/* When a filter is active, dimmed entries collapse */
 .timeline-entry.dimmed {
-  opacity: 0.15 !important;
+  margin-bottom: 0 !important;
+}
+
+.timeline-entry.dimmed .entry-card {
+  max-height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-top-width: 0 !important;
+  border-bottom-width: 0 !important;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease, border-width 0.35s ease;
+}
+
+.timeline-entry.dimmed .year-dot {
+  opacity: 0.2;
+  transform: scale(0.7);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.timeline-entry.dimmed .year-text {
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .timeline-entry:nth-child(odd) {
@@ -287,7 +315,10 @@ body {
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 1.5rem;
-  transition: box-shadow 0.3s, border-color 0.3s;
+  max-height: 2000px;
+  overflow: hidden;
+  opacity: 1;
+  transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease, border-width 0.35s ease, box-shadow 0.3s, border-color 0.3s;
 }
 
 .timeline-entry:hover .entry-card {
@@ -381,6 +412,14 @@ body {
   color: var(--color-intl);
   background: var(--color-intl-bg);
 }
+.entity[data-group="nazi"] {
+  color: var(--color-nazi);
+  background: var(--color-nazi-bg);
+}
+.entity[data-group="intel"] {
+  color: var(--color-intel);
+  background: var(--color-intel-bg);
+}
 
 .entity.highlight {
   outline: 2px solid currentColor;
@@ -469,6 +508,8 @@ body {
 .entry-tag[data-entity="european"] { color: var(--color-european); background: var(--color-european-bg); }
 .entry-tag[data-entity="usfinance"] { color: var(--color-usfinance); background: var(--color-usfinance-bg); }
 .entry-tag[data-entity="intl"] { color: var(--color-intl); background: var(--color-intl-bg); }
+.entry-tag[data-entity="nazi"] { color: var(--color-nazi); background: var(--color-nazi-bg); }
+.entry-tag[data-entity="intel"] { color: var(--color-intel); background: var(--color-intel-bg); }
 
 /* Glossary Section */
 .glossary-section {
