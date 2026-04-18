@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
         activeFilter = null;
         btn.classList.remove("active");
         entries.forEach(e => e.classList.remove("dimmed"));
-        document.querySelectorAll(".entity.highlight").forEach(e => e.classList.remove("highlight"));
       } else {
         activeFilter = entity;
         legendButtons.forEach(b => b.classList.remove("active"));
@@ -20,18 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         entries.forEach(entry => {
           const tags = entry.dataset.entities || "";
-          if (tags.includes(entity)) {
+          if (tags.split(" ").includes(entity)) {
             entry.classList.remove("dimmed");
           } else {
             entry.classList.add("dimmed");
-          }
-        });
-
-        document.querySelectorAll(".entity").forEach(el => {
-          if (el.dataset.group === entity) {
-            el.classList.add("highlight");
-          } else {
-            el.classList.remove("highlight");
           }
         });
       }
@@ -70,12 +61,39 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
+  // Return-to-timeline button
+  const returnBtn = document.querySelector(".return-btn");
+  let savedScrollPosition = null;
+
+  function showReturnBtn(position) {
+    savedScrollPosition = position;
+    returnBtn.classList.add("visible");
+  }
+
+  returnBtn.addEventListener("click", () => {
+    if (savedScrollPosition !== null) {
+      window.scrollTo({ top: savedScrollPosition, behavior: "smooth" });
+      returnBtn.classList.remove("visible");
+      savedScrollPosition = null;
+    }
+  });
+
+  // Hide return button if user scrolls back up to timeline area manually
+  window.addEventListener("scroll", () => {
+    if (savedScrollPosition !== null && window.scrollY < savedScrollPosition - 200) {
+      returnBtn.classList.remove("visible");
+      savedScrollPosition = null;
+    }
+  });
+
   // Glossary tooltip on hover
   document.querySelectorAll(".glossary-ref").forEach(ref => {
     ref.addEventListener("click", (e) => {
       e.preventDefault();
+      const fromPosition = window.scrollY;
       const target = document.querySelector(ref.getAttribute("href"));
       if (target) {
+        showReturnBtn(fromPosition);
         target.scrollIntoView({ behavior: "smooth", block: "center" });
         target.style.background = "#ffeeba";
         setTimeout(() => {

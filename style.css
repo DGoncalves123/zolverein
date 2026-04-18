@@ -194,18 +194,13 @@ body {
   font-weight: 600;
 }
 
-.legend-btn[data-entity="krupp"] .dot { background: var(--color-krupp); }
-.legend-btn[data-entity="haniel"] .dot { background: var(--color-haniel); }
-.legend-btn[data-entity="thyssen"] .dot { background: var(--color-thyssen); }
-.legend-btn[data-entity="banking"] .dot { background: var(--color-banking); }
-.legend-btn[data-entity="state"] .dot { background: var(--color-state); }
-.legend-btn[data-entity="lobby"] .dot { background: var(--color-lobby); }
-.legend-btn[data-entity="rag"] .dot { background: var(--color-rag); }
-.legend-btn[data-entity="european"] .dot { background: var(--color-european); }
-.legend-btn[data-entity="usfinance"] .dot { background: var(--color-usfinance); }
-.legend-btn[data-entity="intl"] .dot { background: var(--color-intl); }
-.legend-btn[data-entity="nazi"] .dot { background: var(--color-nazi); }
-.legend-btn[data-entity="intel"] .dot { background: var(--color-intel); }
+.legend-btn[data-entity="industrial"] .dot { background: #5D4037; }
+.legend-btn[data-entity="wallstreet"] .dot { background: #2E7D32; }
+.legend-btn[data-entity="nazi"] .dot { background: #BF360C; }
+.legend-btn[data-entity="intel"] .dot { background: #00696E; }
+.legend-btn[data-entity="labor"] .dot { background: #B71C1C; }
+.legend-btn[data-entity="subsidy"] .dot { background: #37474F; }
+.legend-btn[data-entity="european"] .dot { background: #0D47A1; }
 
 /* Timeline */
 .timeline-section {
@@ -746,5 +741,39 @@ body {
 }
 
 .back-to-top:hover {
+  opacity: 1;
+}
+
+/* Return to position button */
+.return-btn {
+  position: fixed;
+  bottom: 5rem;
+  right: 2rem;
+  height: 40px;
+  padding: 0 1rem;
+  border-radius: 20px;
+  background: var(--accent);
+  color: var(--header-text);
+  border: none;
+  cursor: pointer;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 50;
+  white-space: nowrap;
+}
+
+.return-btn.visible {
+  opacity: 0.85;
+  pointer-events: auto;
+}
+
+.return-btn:hover {
   opacity: 1;
 }
