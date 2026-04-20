@@ -777,3 +777,40 @@ body {
 .return-btn:hover {
   opacity: 1;
 }
+
+/* Language switcher */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.lang-btn {
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem 0.35rem;
+  border-radius: 3px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.lang-btn.active {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.lang-btn:hover:not(.active) {
+  background: var(--border);
+}
+
+.lang-sep {
+  font-size: 0.65rem;
+  color: var(--border);
+  user-select: none;
+}

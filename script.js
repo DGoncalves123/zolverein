@@ -86,6 +86,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Language switcher
+  const langBtns = document.querySelectorAll(".lang-btn");
+
+  const translationsEN = {};
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    translationsEN[el.dataset.i18n] = el.innerHTML;
+  });
+
+  function applyLanguage(lang) {
+    const dict = lang === "pt" ? (window.TRANSLATIONS_PT || {}) : translationsEN;
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const val = dict[el.dataset.i18n];
+      if (val !== undefined) el.innerHTML = val;
+    });
+    langBtns.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+    localStorage.setItem("zv-lang", lang);
+  }
+
+  const storedLang = localStorage.getItem("zv-lang");
+  const browserLang = (navigator.language || "").toLowerCase();
+  const initLang = storedLang || (browserLang.startsWith("pt") ? "pt" : "en");
+
+  langBtns.forEach(btn => {
+    btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
+  });
+
+  applyLanguage(initLang);
+
   // Glossary tooltip on hover
   document.querySelectorAll(".glossary-ref").forEach(ref => {
     ref.addEventListener("click", (e) => {
